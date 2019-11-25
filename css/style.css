@@ -1,0 +1,396 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* utility */
+.btn-light {
+  color: #3F51B5;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-light:hover {
+  color: #3F51B5;
+}
+
+.up-1 {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(to top, rgba(48, 63, 159, 1), rgba(3, 169, 244, 1));
+  border: 0px solid white;
+  color: white;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btn-gradient:hover {
+  color: #ccc;
+  background-image: linear-gradient(to top, rgba(3, 169, 244, 1), rgba(48, 63, 159, 1));
+}
+
+.btn-gradient-big {
+  background-image: linear-gradient(to top, rgba(48, 63, 159, 1), rgba(3, 169, 244, 1));
+  border: 0px solid white;
+  margin: auto;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  border-radius: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: block;
+}
+
+.biru {
+  color: #3F51B5;
+}
+
+.ikon-besar {
+  font-size: 60px;
+  color: #303F9F;
+}
+
+.text-ungu {
+  color: #303F9F;
+}
+
+.lingkar {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 80px;
+  height: 80px;
+  width: 80px;
+  color: white;
+  background-color: #303F9F;
+  border-radius: 100%;
+}
+
+
+
+/* Navbar */
+.navbar {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.tombol-nav {
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  background-color: #3F51B5;
+}
+
+.tombol-nav:hover {
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  background-color: #303F9F;
+}
+
+/* jumbotron */
+.jumbotron h3 {
+  font-size: 22px;
+  color: white;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.jumbotron-atas {
+  min-height: 700px;
+}
+
+.jumbotron {
+  background-image: url(../img/kos.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.jumbotron::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to top, rgba(48, 63, 159, 0.9), rgba(3, 169, 244, 0.4));
+  position: absolute;
+  bottom: 0;
+}
+
+.welcome {
+  font-size: 16px;
+  padding: 10px 20px 10px;
+  color: #3F51B5;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.banner {
+  height: 700px;
+}
+
+.banner-tittle {
+  margin-top: 120px;
+}
+
+.banner-tittle h1,
+.banner-tittle p {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.banner-tittle h1 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.lead {
+  font-size: 16px;
+}
+
+/* tentang */
+.tentang {
+  font-size: 20px;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+}
+
+.kecil-grey {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  color: #757575;
+}
+
+/* testimoni */
+.testimoni .item {
+  position: relative;
+  z-index: 1;
+}
+
+.card-img {
+  background-size: cover;
+}
+
+#testimonial_area {
+  background-image: url(../images/testi-bg.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  position: relative;
+}
+
+#testimonial_area:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(-45deg, rgba(88, 195, 255, .8) 0, rgba(0, 77, 230, .8) 40%, rgba(0, 59, 177, .8) 100%);
+}
+
+.single_testimonial {
+  background: #fff;
+  height: 300px;
+  padding: 30px;
+  margin: 35px 0px 0;
+  position: relative;
+  display: block;
+  margin-top: 60px;
+  
+}
+
+.single_testimonial .testimonial-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1461ff;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.single_testimonial .test_designation {
+  display: block;
+  font-size: 13px;
+  margin: 0 0 10px;
+  font-weight: 400;
+}
+
+.single_testimonial .pic {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: -34px;
+  left: 0;
+  bottom: 0;
+  margin: 0 auto;
+  right: 0;
+  z-index: 1;
+}
+
+.single_testimonial .pic img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+#testimonial_area .owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+#testimonial_area .owl-prev,
+#testimonial_area .owl-next {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  background-image: linear-gradient(-45deg, rgba(88, 195, 255, .8) 0, rgba(0, 77, 230, .8) 40%, rgba(0, 59, 177, .8) 100%);
+  position: absolute;
+}
+
+#testimonial_area .owl-prev {
+  left: -60px;
+}
+
+#testimonial_area .owl-next {
+  right: -60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* desktop */
+
+@media (min-width: 992px) {
+
+  /* nav */
+  .navbar-brand,
+  .nav-link {
+    color: white !important;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+    margin-top: 7px;
+    font-size: 16px;
+  }
+
+  .nav-link:hover:after {
+    content: "";
+    display: block;
+    border-bottom: 3px solid #3F51B5;
+    width: 40%;
+    margin: auto;
+    padding-bottom: 3px;
+    margin-bottom: -10px;
+  }
+
+  .tombol {
+    text-transform: uppercase;
+    border-radius: 80px;
+  }
+
+  .tombol-nav {
+
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: white;
+    color: #3F51B5;
+    border: 0px solid white
+  }
+
+  .tombol-nav:hover {
+    background-color: #BDBDBD;
+    border: 0px solid white;
+  }
+
+  /* jumbotron */
+  .jumbotron-atas {
+    background-image: url(../img/kos.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -67px;
+    height: 700px;
+  }
+
+  .testimoni {
+    background-image: url(../img/cityscape.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    padding-top: 40px;
+  }
+
+  .btn-gradient {
+    font-size: 18px;
+  }
+
+  .jumbotron h3 {
+    font-size: 28px;
+  }
+
+  .banner-tittle h1 {
+    font-weight: bold;
+    font-size: 60px;
+  }
+  
+  .lead {
+    font-size: 18px;
+  }
+
+  /* tentang */
+  .tentang {
+    font-size: 28px;
+  }
+
+  /* testimoni */
+
+  .single_testimonial {
+    background: #fff;
+    height: 250px;
+    padding: 30px;
+    margin: 35px 0px 0;
+    position: relative;
+    display: block;
+    margin-top: 50px;
+    
+  }
+}
