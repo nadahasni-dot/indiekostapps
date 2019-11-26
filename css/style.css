@@ -283,6 +283,25 @@ body {
   right: -60px;
 }
 
+/* footer */
+.footer-atas p .text-light{
+  font-size: 10px;
+}
+
+.footer-bawah {
+  background-color: #333;
+}
+
+.footer-bawah .text-light{
+  font-size: 10px;
+}
+
+/* map leaflet */
+#mapid {
+  height: 220px;
+}
+
+
 
 
 
