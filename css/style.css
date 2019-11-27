@@ -75,6 +75,16 @@ body {
   border-radius: 100%;
 }
 
+.button-up {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  background-color: #303F9F;
+  z-index: 999;
+  top: 5;
+  left: 5;
+}
+
 
 
 /* Navbar */
