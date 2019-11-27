@@ -44,12 +44,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="#">Tentang <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Keunggulan</a>
-            <a class="nav-item nav-link" href="#">Testimoni</a>
-            <a class="nav-item btn btn-light tombol tombol-nav" href="#" tabindex="-1" aria-disabled="true">SIGN
+            <a class="nav-item nav-link" id="btn-tentang" href="#tentang">Tentang</a>
+            <a class="nav-item nav-link" id="btn-keunggulan" href="#keunggulan">Keunggulan</a>
+            <a class="nav-item nav-link" id="btn-testimoni" href="#testimoni">Testimoni</a>
+            <a class="nav-item btn btn-light tombol tombol-nav" href="pages/sign-up.php" tabindex="-1"
+              aria-disabled="true">SIGN
               UP</a>
-            <a class="nav-item btn btn-light tombol tombol-nav" href="#" tabindex="-1" aria-disabled="true">SIGN
+            <a class="nav-item btn btn-light tombol tombol-nav" href="pages/sign-in.php" tabindex="-1"
+              aria-disabled="true">SIGN
               IN</a>
           </div>
         </div>
@@ -75,7 +77,7 @@
     <!-- jumbotron -->
 
     <!-- tentang -->
-    <div class="container-fluid">
+    <div class="container-fluid" id="tentang">
       <div class="row">
         <div class="col">
           <h2 class="tentang pt-5">Rumah Kost Ini Menggunakan Layanan <span class="biru">INDIEKOS</span> <br>
@@ -179,7 +181,7 @@
     </div>
     <!-- keunggulan atas-->
 
-    <div class="container bg-keunggulan">
+    <div class="container bg-keunggulan" id="keunggulan">
       <!-- keuunggulan deskripsi -->
       <div class="row mt-5">
         <div class="container">
@@ -238,7 +240,7 @@
 
     <!-- testimoni -->
     <!-- jumbotron -->
-    <div class="jumbotron testimoni jumbotron-fluid">
+    <div class="jumbotron testimoni jumbotron-fluid" id="testimoni">
       <div class="container item">
         <div class="row">
           <div class="col-12">
@@ -340,6 +342,9 @@
     </div> <!-- akhir footer atas -->
   </footer>
 
+  <div class="button-up">
+    <i class="fas fa-arrow-circle-up"></i>
+  </div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -365,6 +370,11 @@
 
     marker.bindPopup("<b>Rumah Kost Putri Bidadari!</b><br>Baturaden 10").openPopup();
 
+    $('a#btn-tentang').click(function () {
+      $('html, body').animate({
+        scrollTop: $("div#tentang").offset().top
+      }, 1000)
+    });
   </script>
 </body>
 
