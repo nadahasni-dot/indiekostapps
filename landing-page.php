@@ -333,7 +333,7 @@
             Numquam commodi dolores blanditiis consectetur.</p>
         </div>
         <div class="col col-12 col-md-3">
-          <div id="mapid"></div>
+          <div id="mapid" class="my-auto"></div>
         </div>
       </div>
       <div class="row footer-bawah pt-3 pl-3 mt-3">
