@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>INDIEKOST | SIGN IN</title>
+  <title>INDIEKOST | Masuk</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
   <div class="container up">
 
     <!-- Outer Row -->
-    <div class="row justify-content-center ">
+    <div class="row justify-content-center">
 
       <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -41,7 +41,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                   </div>
-                  <form class="user needs-validation" action="" novalidate>
+                  <form class="user needs-validation" action="../app/admin/admin-dashboard.php" novalidate>
 
                     <!-- email -->
                     <div class="form-group">
@@ -64,11 +64,11 @@
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                        <label class="custom-control-label" for="customCheck">Ingat Saya</label>
                       </div>
                     </div>
 
-                    <input type="submit" class="btn btn-primary btn-user btn-block">
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Masuk">
                     
                     <hr>
                     <a href="../" class="btn btn-google btn-user btn-block">

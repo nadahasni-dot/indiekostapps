@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+  
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,11 +50,9 @@
             <a class="nav-item nav-link" id="btn-keunggulan" href="#keunggulan">Keunggulan</a>
             <a class="nav-item nav-link" id="btn-testimoni" href="#testimoni">Testimoni</a>
             <a class="nav-item btn btn-light tombol tombol-nav" href="pages/sign-up.php" tabindex="-1"
-              aria-disabled="true">SIGN
-              UP</a>
+              aria-disabled="true">Daftar</a>
             <a class="nav-item btn btn-light tombol tombol-nav" href="pages/sign-in.php" tabindex="-1"
-              aria-disabled="true">SIGN
-              IN</a>
+              aria-disabled="true">Masuk</a>
           </div>
         </div>
       </div>
@@ -66,11 +66,7 @@
       <div class="container banner-tittle">
         <h3>WELCOME</h3>
         <h1 class="display-4">RUMAH KOST BIDADARI</h1>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate nesciunt beatae
-          obcaecati ex
-          repudiandae consequatur magni dicta, aut ea mollitia amet reprehenderit dolorem repellat eligendi qui
-          numquam a
-          cumque esse.</p>
+        <p class="lead">Kost Putri yang nyaman, aman, bersih, dan modern. Memiliki 2 lantai, dan 30 kamar. Fasilitas oke harga bersahabat. Terletak di daerah yang strategis. Cocok untuk pelajar</p>
         <a href="" class="btn up-1 btn-gradient">Cek Ketersediaan Kamar</a>
       </div>
     </div>
@@ -315,25 +311,29 @@
     <div class="container-fluid bg-dark text-light m-0 pt-4 pl-3">
       <div class="row">
         <div class="col col-12 col-md-3">
-          <h5 class="text-light font-weight-bold">Lorem Ipsum</h5>
-          <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque quasi quae
-            consectetur quisquam odio eaque quam rerum temporibus, aspernatur maiores tempore, expedita ipsum ipsam?
-            Numquam commodi dolores blanditiis consectetur.</p>
+          <h5 class="text-white font-weight-bold h6 mt-2">Apa itu INDIEKOST?</h5>
+          <p class="text-light smaller-text h6">INDIEKOST adalah software aplikasi customer managemen relationship (CRM) untuk kos-kosan berbasis cloud (internet) sehingga memudahkan anda dalam mengelola bisnis. Dirancang simpel untuk orang awam, sehingga mudah digunakan, semudah menggunakan handphone. Saat ini Halokos juga sebagai operator kos-kosan. Kami membantu klien yang ingin bisnis kos-kosan tapi tidak memiliki waktu dan keahlian yang memadai.</p>
         </div>
         <div class="col col-12 col-md-3">
-          <h5 class="text-light font-weight-bold">Lorem Ipsum</h5>
-          <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque quasi quae
-            consectetur quisquam odio eaque quam rerum temporibus, aspernatur maiores tempore, expedita ipsum ipsam?
-            Numquam commodi dolores blanditiis consectetur.</p>
+          <h5 class="text-white font-weight-bold h6 mt-2">Mengapa Rumah Kost Putri Bidadari Bergabung?</h5>
+          <p class="text-light smaller-text h6">Aplikasi ini membantu pengelolaan dan pembukuan rumah kost. Dapat diakses kapan saja, dimana saja, dan mudah digunakan. Semua transaksi terlacak dan tercatat rapih. Aplikasi ini adalah solusi bagi pengelolaan rumah kost untuk lebih modern dan rapih</p>
         </div>
         <div class="col col-12 col-md-3 footer-atas">
-          <h5 class="text-light font-weight-bold">Lorem Ipsum</h5>
-          <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque quasi quae
-            consectetur quisquam odio eaque quam rerum temporibus, aspernatur maiores tempore, expedita ipsum ipsam?
-            Numquam commodi dolores blanditiis consectetur.</p>
+          <h5 class="text-light font-weight-bold h6 mt-2">Rumah Kost Putri Bidadari</h5>
+          <p class="text-light smaller-text h6">
+          <i class="fas fa-map mr-1"></i>  Jl. Baturaden 10, Kab. Jember, Jawa Timur
+          </p>
+          <p class="text-light smaller-text h6">
+            <i class="fas fa-phone-alt mr-1"></i> 
+            0857 3567 8159
+          </p>
+          <p class="text-light smaller-text h6">
+            <i class="fas fa-envelope mr-1"></i> 
+            kostputribidadari@gmail.com
+          </p>
         </div>
         <div class="col col-12 col-md-3">
-          <div id="mapid" class="my-auto"></div>
+          <div id="mapid" class="mt-2"></div>
         </div>
       </div>
       <div class="row footer-bawah pt-3 pl-3 mt-3">
