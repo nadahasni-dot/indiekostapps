@@ -15,6 +15,10 @@ body {
   color: #3F51B5;
 }
 
+.smaller-text {
+  line-height: 1.5rem;
+}
+
 .up-1 {
   position: relative;
   z-index: 1;
@@ -84,6 +88,24 @@ body {
   top: 5;
   left: 5;
 }
+
+/* sign in cards */
+.box-tengah {
+  margin: 0;
+  
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -229,7 +251,7 @@ body {
   position: relative;
   display: block;
   margin-top: 60px;
-  
+
 }
 
 .single_testimonial .testimonial-title {
@@ -294,7 +316,7 @@ body {
 }
 
 /* footer */
-.footer-atas p .text-light{
+.footer-atas p .text-light {
   font-size: 10px;
 }
 
@@ -302,7 +324,7 @@ body {
   background-color: #333;
 }
 
-.footer-bawah .text-light{
+.footer-bawah .text-light {
   font-size: 10px;
 }
 
@@ -400,7 +422,7 @@ body {
     font-weight: bold;
     font-size: 60px;
   }
-  
+
   .lead {
     font-size: 18px;
   }
@@ -420,6 +442,12 @@ body {
     position: relative;
     display: block;
     margin-top: 50px;
-    
+
+  }
+
+
+  /* map leaflet */
+  #mapid {
+    height: 300px;
   }
 }
