@@ -13,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>INDIEKOST | Daftar</title>
+  <title>INDIEKOST | Masuk</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,114 +21,83 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
-  <!-- font -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap" rel="stylesheet">
-
-  <!-- fontawesome icon -->
-  <script src="https://kit.fontawesome.com/9afba118d6.js" crossorigin="anonymous"></script>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-gradient-primary">
+
   <div class="container up">
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <!-- form -->
-              <div class="col-lg-12">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
                 <div class="p-5">
-                  <div>
-                    <h1 class="text-left font-weight-bold h2 text-gray-900">DAFTAR AKUN</h1>
-                    <p class="text-muted">Anda harus membuat akun terlebih dahulu sebelum melakukan pemesanan kamar di
-                      rumah kost ini. Lengkapi form dibawah ini dengan data yang valid agar menjadi anggota.</p>
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                   </div>
-
-                  <!-- form mulai -->
-                  <form class="user needs-validation" action="../actions/process-signup.php" method="POST" novalidate>
-                    <!-- nama lengkap -->
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="inputNama"
-                        placeholder="Nama Lengkap" name="nama_lengkap_reg" required>
-                      <div class="invalid-feedback">
-                        Harap isi nama lengkap anda.
-                      </div>
-                    </div>
+                  <form class="user needs-validation" action="../actions/process-signin.php" method="POST" novalidate>
 
                     <!-- email -->
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="inputEmail"
-                        placeholder="Alamat Email" name="email_reg" required>
+                      <input type="email" class="form-control form-control-user" id="inputEmailLogin"
+                        placeholder="Alamat Email" name="email_login"equired>
                       <div class="invalid-feedback">
                         Harap isi alamat email anda.
                       </div>
                     </div>
 
 
-                    <!-- no telepon -->
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="inputNomor"
-                        placeholder="Nomor telepon" name="nomor_reg" required>
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                        placeholder="Password" name="password_login" required>
                       <div class="invalid-feedback">
-                        Harap isi nomor telepon anda.
+                        Harap isi password anda.
                       </div>
                     </div>
 
-
-                    <!-- password -->
-                    <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user password" id="inputPassword"
-                          placeholder="Password" name="password_reg" required>
-                        <div class="invalid-feedback">
-                          Harap isi password untuk akun anda.
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user confpass" id="repeatPassword"
-                          placeholder="Repeat Password" name="password_repeat_reg" required>
-                        <div class="invalid-feedback">
-                          Harap isi konfirmasi password untuk akun anda.
-                        </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" name="ingat_login" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Ingat Saya</label>
                       </div>
                     </div>
 
-                    <!-- button submit registrasi -->
-                    <button type="submit" name="submit_daftar" id="submit" class="btn btn-primary btn-user btn-block">SIGN UP</button>
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Masuk" name="submit_login">
+                    
+                    <hr>
                     <a href="../" class="btn btn-google btn-user btn-block">
-                  <i class="fas fa-home"></i> KEMBALI KE HOMEPAGE
-                </a>
+                      <i class="fas fa-home"></i> Kembali Ke Homepage
+                    </a>
                   </form>
 
-
-                  <!-- akhir form -->
-                  
-
                   <hr>
+
                   <div class="text-center">
                     <a class="small" href="forgot-password.php">Lupa Password?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="sign-in.php">Sudah mempunyai akun? Masuk sekarang</a>
+                    <a class="small" href="sign-up.php">Buat Akun!</a>
                   </div>
                 </div>
               </div>
-              <!-- akhir form -->
-
             </div>
           </div>
         </div>
+
       </div>
+
     </div>
+
   </div>
 
   <!-- Core plugin JavaScript-->
@@ -180,25 +149,16 @@
     ?>
 
     $(function(){
-      $(".bg-gradient-primary").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"})
+      $(".bg-login-image").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"});
     })
 
+    $(function(){
+      $(".bg-gradient-primary").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"});
+    })
     
-
     <?php } ?>
-
-$(document).ready(function () {
-  $('#submit').click(function (event) {
-
-    if ($('.password').val() != $('.confpass').val()) {
-      alert("Password dan Konfirmasi Password Tidak Sama!");
-      // Prevent form submission
-      event.preventDefault();
-    }
-
-  });
-});
   </script>
+
 </body>
 
 </html>
