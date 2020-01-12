@@ -12,11 +12,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>INDIEKOST | Lupa Password</title>
+  <title>INDIEKOST | Berhasil Merubah Password</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.css" rel="stylesheet">
@@ -40,16 +42,17 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Lupa Password Akun?</h1>
-                    <p class="mb-4">Kami memahaminya, terkadang manusia bisa saja lupa. Tenang, masukkan email anda, dan kami akan mengirim link untuk mereset password anda.</p>
+                    <h1 class="h4 text-gray-900 mb-2">Password Anda Berhasil Diubah</h1>
+                    <p class="mb-4">Silahkan klik tombol dibawah untuk kembali ke halaman login. Harap gunakan password
+                      baru anda.</p>
                   </div>
-                  <form class="user" action="../actions/send-password-email.php" method="POST">
-                    <div class="form-group">
-                      <input type="email" name="email_reset" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." >
-                    </div>
-                    <input type="submit" name="reset_pass" class="btn btn-primary btn-user btn-block" value="Reset Password">
-                  </form>
                   <hr>
+                  <form class="user">
+                    <a href="../pages/sign-in.php" class="btn btn-primary btn-user btn-block">
+                      <i class="fas fa-home"></i>Masuk Sekarang
+                    </a>
+                  </form>
+                  <br>
                   <div class="text-center">
                     <a class="small" href="sign-up.php">Belum mempunyai akun? Buat Akun!</a>
                   </div>
@@ -77,26 +80,23 @@
 
   <!-- Custom scripts for all pages-->
   <script src="../js/sb-admin-2.min.js"></script>
-
-  <script>
   
-  <?php 
+  <script>
+    <?php 
 
-  $query = "SELECT * FROM info_kost";
-  $result = mysqli_query($conn, $query);
+    $query = "SELECT * FROM info_kost";
+    $result = mysqli_query($conn, $query);
 
-  while ($data = mysqli_fetch_array($result)) {
+    while ($data = mysqli_fetch_array($result)) {
 
-  ?>
+    ?>
 
-  $(function(){
-    $(".bg-password-image").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"})
-  })
+    $(function(){
+      $(".bg-password-image").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"})
+    })
 
-  <?php } ?>
-
+    <?php } ?>
   </script>
-
 </body>
 
 </html>

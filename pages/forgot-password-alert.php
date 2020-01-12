@@ -40,15 +40,9 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Lupa Password Akun?</h1>
-                    <p class="mb-4">Kami memahaminya, terkadang manusia bisa saja lupa. Tenang, masukkan email anda, dan kami akan mengirim link untuk mereset password anda.</p>
+                    <h1 class="h4 text-gray-900 mb-2">Link Telah Dikirim</h1>
+                    <p class="mb-4">Link untuk mereset password anda telah kami kirim ke email anda. Silahkan cek kotak masuk email anda. Klik link untuk mereset password, dan lakukan pembuatan password baru untuk akun anda.</p>
                   </div>
-                  <form class="user" action="../actions/send-password-email.php" method="POST">
-                    <div class="form-group">
-                      <input type="email" name="email_reset" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." >
-                    </div>
-                    <input type="submit" name="reset_pass" class="btn btn-primary btn-user btn-block" value="Reset Password">
-                  </form>
                   <hr>
                   <div class="text-center">
                     <a class="small" href="sign-up.php">Belum mempunyai akun? Buat Akun!</a>
@@ -79,24 +73,21 @@
   <script src="../js/sb-admin-2.min.js"></script>
 
   <script>
-  
-  <?php 
+    <?php 
 
-  $query = "SELECT * FROM info_kost";
-  $result = mysqli_query($conn, $query);
+    $query = "SELECT * FROM info_kost";
+    $result = mysqli_query($conn, $query);
 
-  while ($data = mysqli_fetch_array($result)) {
+    while ($data = mysqli_fetch_array($result)) {
 
-  ?>
+    ?>
 
-  $(function(){
-    $(".bg-password-image").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"})
-  })
+    $(function(){
+      $(".bg-password-image").css({"background-image": "url(../img/<?php echo $data['foto_kost'] ?>)"})
+    })
 
-  <?php } ?>
-
+    <?php } ?>
   </script>
-
 </body>
 
 </html>
