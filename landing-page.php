@@ -1,3 +1,7 @@
+<?php 
+  include 'actions/koneksi.php';
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -36,7 +40,7 @@
 
 <body>
   <!-- navbar -->
-  <header>
+  <header id="header">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
         <a class="navbar-brand" href="#">INDIEKOST</a>
@@ -46,9 +50,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" id="btn-tentang" href="#tentang">Tentang</a>
-            <a class="nav-item nav-link" id="btn-keunggulan" href="#keunggulan">Keunggulan</a>
-            <a class="nav-item nav-link" id="btn-testimoni" href="#testimoni">Testimoni</a>
+            <a class="nav-item nav-link item-scroll" id="btn-tentang" href="#tentang">Tentang</a>
+            <a class="nav-item nav-link item-scroll" id="btn-keunggulan" href="#keunggulan">Keunggulan</a>
+            <a class="nav-item nav-link item-scroll" id="btn-testimoni" href="#testimoni">Testimoni</a>
             <a class="nav-item btn btn-light tombol tombol-nav" href="pages/sign-up.php" tabindex="-1"
               aria-disabled="true">Daftar</a>
             <a class="nav-item btn btn-light tombol tombol-nav" href="pages/sign-in.php" tabindex="-1"
@@ -61,19 +65,32 @@
   <!-- navbar end -->
 
   <main>
+
+  <?php 
+
+  $query = "SELECT * FROM info_kost";
+  $result = mysqli_query($conn, $query);
+
+  while ($data = mysqli_fetch_array($result)) {
+
+  ?>
+
     <!-- jumbotron -->
-    <div class="jumbotron jumbotron-atas jumbotron-fluid">
+    <div class="jumbotron jumbotron-atas jumbotron-fluid" id="jumbotron">
       <div class="container banner-tittle">
         <h3>WELCOME</h3>
-        <h1 class="display-4">RUMAH KOST BIDADARI</h1>
-        <p class="lead">Kost Putri yang nyaman, aman, bersih, dan modern. Memiliki 2 lantai, dan 30 kamar. Fasilitas oke harga bersahabat. Terletak di daerah yang strategis. Cocok untuk pelajar</p>
+        <h1 class="display-4 text-uppercase">RUMAH <?php echo $data['nama_kost']; ?></h1>
+        <p class="lead"><?php echo $data['deskripsi_kost']; ?></p>
         <a href="" class="btn up-1 btn-gradient">Cek Ketersediaan Kamar</a>
       </div>
     </div>
     <!-- jumbotron -->
 
+  <?php } ?>
+
+    <section id="tentang">
     <!-- tentang -->
-    <div class="container-fluid" id="tentang">
+    <div class="container-fluid">
       <div class="row">
         <div class="col">
           <h2 class="tentang pt-5">Rumah Kost Ini Menggunakan Layanan <span class="biru">INDIEKOS</span> <br>
@@ -107,6 +124,7 @@
         </div>
       </div>
     </div>
+    </section>
     <!-- tentang -->
 
     <!-- keunggulan atas-->
@@ -318,20 +336,33 @@
           <h5 class="text-white font-weight-bold h6 mt-2">Mengapa Rumah Kost Putri Bidadari Bergabung?</h5>
           <p class="text-light smaller-text h6">Aplikasi ini membantu pengelolaan dan pembukuan rumah kost. Dapat diakses kapan saja, dimana saja, dan mudah digunakan. Semua transaksi terlacak dan tercatat rapih. Aplikasi ini adalah solusi bagi pengelolaan rumah kost untuk lebih modern dan rapih</p>
         </div>
+
+        <?php 
+
+        $query = "SELECT * FROM info_kost";
+        $result = mysqli_query($conn, $query);
+
+        while ($data = mysqli_fetch_array($result)) {
+
+        ?>
+
         <div class="col col-12 col-md-3 footer-atas">
-          <h5 class="text-light font-weight-bold h6 mt-2">Rumah Kost Putri Bidadari</h5>
+          <h5 class="text-light font-weight-bold h6 mt-2">Rumah <?php echo $data['nama_kost']; ?></h5>
           <p class="text-light smaller-text h6">
-          <i class="fas fa-map mr-1"></i>  Jl. Baturaden 10, Kab. Jember, Jawa Timur
+          <i class="fas fa-map mr-1"></i>  <?php echo $data['alamat_kost']; ?>, <?php echo $data['kota_kost'];?>, <?php $data['provinsi_kost']; ?>
           </p>
           <p class="text-light smaller-text h6">
             <i class="fas fa-phone-alt mr-1"></i> 
-            0857 3567 8159
+            <?php echo $data['no_kost']; ?>
           </p>
           <p class="text-light smaller-text h6">
             <i class="fas fa-envelope mr-1"></i> 
-            kostputribidadari@gmail.com
+            <?php echo $data['email_kost']; ?>
           </p>
         </div>
+
+        <?php } ?>
+
         <div class="col col-12 col-md-3">
           <div id="mapid" class="mt-2"></div>
         </div>
@@ -340,23 +371,23 @@
         <p class="text-muted">Powered by TeknoTirta</p>
       </div>
     </div> <!-- akhir footer atas -->
-  </footer>
+            </footer>
 
-  <div class="button-up">
+  <d iv class="button-up">
     <i class="fas fa-arrow-circle-up"></i>
-  </div>
+    </div>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    <!--        Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 
   <script>
     var mymap = L.map('mapid').setView([-8.156050, 113.720791], 15);
@@ -370,11 +401,36 @@
 
     marker.bindPopup("<b>Rumah Kost Putri Bidadari!</b><br>Baturaden 10").openPopup();
 
-    $('a#btn-tentang').click(function () {
-      $('html, body').animate({
-        scrollTop: $("div#tentang").offset().top
-      }, 1000)
+
+    // Header scroll class
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 100) {
+        $('#header').addClass('header-scrolled');
+      } else {
+        $('#header').removeClass('header-scrolled');
+      }
     });
+
+    if ($(window).scrollTop() > 100) {
+      $('#header').addClass('header-scrolled');
+    }
+
+    <?php 
+
+    $query = "SELECT * FROM info_kost";
+    $result = mysqli_query($conn, $query);
+
+    while ($data = mysqli_fetch_array($result)) {
+
+    ?>
+
+    $(function(){
+      $(".jumbotron-atas").css({"background-image": "url(img/<?php echo $data['foto_kost'] ?>)"})
+    })
+    
+    <?php } ?>
+
+
   </script>
 </body>
 
