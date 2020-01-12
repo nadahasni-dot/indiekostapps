@@ -1,3 +1,32 @@
+<?php 
+
+include '../../actions/koneksi.php';
+
+ob_start();
+session_start();
+
+if (!isset($_SESSION['akun_id'])){
+  header("location: ../../landing-page.php");
+} 
+elseif (isset($_SESSION['akun_id'])){
+  if($_SESSION['hak_akses'] == 2){
+    header("location: ../penghuni/penghuni-dashboard.php");
+  }
+  elseif($_SESSION['hak_akses'] == 3){
+    header("location: ../calon-penghuni/calon-dashboard.php");
+  } 
+}
+
+// if ($_SESSION['hak_akses'] == 2) {
+//   header("location: ../penghuni/index.php");
+// } elseif ($_SESSION['hak_akses'] == 3) {
+//   header("location: ../calon-penghuni/index.php");
+// } else {
+//   header("location: ../../index.php");  
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +60,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-home"></i>
         </div>
@@ -43,7 +72,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -58,30 +87,40 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
+        <a class="nav-link" href="admin-penghuni.php">
+          <i class="fas fa-fw fa-user-friends"></i>
           <span>Penghuni</span></a>
       </li>
 
-      <!-- Nav Item - Tables -->
+      <!-- Nav Item - Kamar Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Kamar</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKamar"
+          aria-expanded="true" aria-controls="collapseKamar">
+          <i class="fas fa-fw fa-bed"></i>
+          <span>Kamar</span>
+        </a>
+        <div id="collapseKamar" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Menu:</h6>
+            <a class="collapse-item" href="admin-booking.php">Booking Kamar</a>
+            <a class="collapse-item" href="admin-kamar.php">Data Kamar</a>
+            <a class="collapse-item" href="admin-kamar-menghuni.php">Menghuni</a>            
+          </div>
+        </div>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
           aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-money-bill"></i>
           <span>Pembayaran</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu:</h6>
-            <a class="collapse-item" href="buttons.html">Pemasukan</a>
-            <a class="collapse-item" href="cards.html">Pengeluaran</a>
+            <a class="collapse-item" href="admin-pemasukan.php">Pemasukan</a>
+            <a class="collapse-item" href="admin-pengeluaran.php">Pengeluaran</a>
           </div>
         </div>
       </li>
@@ -90,16 +129,32 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-book"></i>
           <span>Laporan</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="#">Laporan Laba/Rugi</a>
+            <a class="collapse-item" href="#">Laporan Tagihan</a>
+            <a class="collapse-item" href="#">Laporan Status Kamar</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - masteData Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster"
+          aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-box"></i>
+          <span>Master Data</span>
+        </a>
+        <div id="collapseMaster" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Menu:</h6>
+            <a class="collapse-item" href="admin-data-layanan.php">Data Layanan</a>
+            <a class="collapse-item" href="admin-jenis-pengeluaran.php">Data Jenis Pengeluaran</a>
+            <a class="collapse-item" href="admin-tipe-kamar.php">Data Tipe Kamar</a>
           </div>
         </div>
       </li>
@@ -130,81 +185,7 @@
           </button>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                      aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
+          <ul class="navbar-nav ml-auto">            
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -212,23 +193,43 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                <img class="img-profile rounded-circle" src="../../img/profile-img-none.png">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo '('.($_SESSION['nama_akses']).') '.($_SESSION['akun_nama']);  ?></span>
+                
+                <!-- foto profil -->
+
+                <?php 
+                $id = $_SESSION['akun_id'];
+                $query = "SELECT * FROM pengguna WHERE id_pengguna = $id";
+                $result = mysqli_query($conn, $query);
+        
+                while ($data = mysqli_fetch_array($result)) {
+                  if ($data['foto_pengguna'] == NULL){                  
+                ?>
+
+                <img class="img-profile rounded-circle" src="../../img/none.png">
+                  <?php } else { ?>
+
+                <img class="img-profile rounded-circle" src="../../img/<?php print_r($data['foto_pengguna']);  ?>">
+                
+                <?php
+                    } 
+                  } 
+                ?>
+
+                <!-- foto profil -->
+
+
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="admin-settings-profil.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="admin-settings-infokost.php">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
+                </a>                
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -248,20 +249,38 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            <a href="#" target="_BLANK" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Cetak Laporan</a>
           </div>
 
           <div class="row">
 
+            <?php 
+              $query = "SELECT pembayaran.id_pembayaran , SUM(pembayaran.nilai_pembayaran) as pendapatan_bulan, MONTH(pembayaran.tanggal_pembayaran) bulan, DATE_FORMAT(CURRENT_DATE, '%M %Y') bulan_sekarang
+                FROM pembayaran
+                  WHERE
+                    pembayaran.id_status = 1 AND
+                      MONTH(pembayaran.tanggal_pembayaran) = MONTH(CURRENT_DATE)
+                      
+                      GROUP BY MONTH(pembayaran.tanggal_pembayaran)
+                      HAVING SUM(pembayaran.nilai_pembayaran) 
+                      LIMIT 12";
+
+              $result = mysqli_query($conn, $query);
+              $data_bulan = mysqli_fetch_array($result);
+            ?>
+
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
+                  <a href="admin-pemasukan.php" class="stretched-link"></a>
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendapatan
+                        (<?php echo $data_bulan['bulan_sekarang'];?>)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
+                        <?php echo number_format($data_bulan['pendapatan_bulan']); ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -271,14 +290,32 @@
               </div>
             </div>
 
+            <?php 
+              $query = "SELECT pembayaran.id_pembayaran , SUM(pembayaran.nilai_pembayaran) as pendapatan_tahun, YEAR(pembayaran.tanggal_pembayaran) bulan, DATE_FORMAT(CURRENT_DATE, '%Y') tahun_sekarang
+                FROM pembayaran
+                  WHERE
+                    pembayaran.id_status = 1 AND
+                      YEAR(pembayaran.tanggal_pembayaran) = YEAR(CURRENT_DATE)
+                      
+                      GROUP BY YEAR(pembayaran.tanggal_pembayaran)
+                      HAVING SUM(pembayaran.nilai_pembayaran)
+                      LIMIT 12";
+
+              $result = mysqli_query($conn, $query);
+              $data_tahun = mysqli_fetch_array($result);
+             ?>
+
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
+                  <a href="admin-pemasukan.php" class="stretched-link"></a>
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pendapatan
+                        (<?php echo $data_tahun['tahun_sekarang']; ?>)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
+                        <?php echo number_format($data_tahun['pendapatan_tahun']); ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -289,26 +326,26 @@
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
+            <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
+                  <a href="admin-penghuni.php" class="stretched-link"></a>
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Penghuni</div>
+                      <?php 
+                        $query = "SELECT COUNT(pengguna.nama_pengguna) total_penghuni FROM pengguna
+                        WHERE pengguna.id_akses = 2";
+        
+                        $result = mysqli_query($conn, $query);
+                        $data_penghuni = mysqli_fetch_array($result);
+                      ?>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php echo $data_penghuni['total_penghuni']; ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      <i class="fas fa-user-friends fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -318,17 +355,32 @@
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
+                
                 <div class="card-body">
+                <a href="admin-pemasukan.php" class="stretched-link"></a>
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pembayaran Pending</div>
+                      <?php 
+                        $query = "SELECT COUNT(pengguna.nama_pengguna) AS belum_dikonfirmasi
+                        FROM pengguna
+                          INNER JOIN menghuni ON pengguna.id_pengguna = menghuni.id_pengguna
+                          INNER JOIN pembayaran ON pembayaran.id_menghuni = menghuni.id_menghuni
+                          
+                          WHERE
+                            pembayaran.id_status = 2";
+
+                        $result = mysqli_query($conn, $query);
+                        $data_penghuni = mysqli_fetch_array($result);    
+                      ?>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $data_penghuni['belum_dikonfirmasi']; ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="fas fa-money-bill-wave fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -342,14 +394,14 @@
               <!-- Area Chart -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Laba/Rugi Bulanan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Pendapatan Tiap Bulan</h6>
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
                     <canvas id="myAreaChart"></canvas>
                   </div>
                   <hr>
-                  Pantau pendapatan laba/rugi tiap bulan <span class="text-danger">angka 1 - 12 menunjukkan urutan Bulan</span>
+                  <span class="text-danger">Data pendapatan rumah kost anda tiap bulan</span>
                 </div>
               </div>
             </div>
@@ -359,70 +411,45 @@
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Pembayaran Terbaru</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Pembayaran Kamar Terbaru</h6>
                 </div>
                 <div class="card-body">
+                  <?php 
+                    $query = "SELECT pengguna.nama_pengguna, pembayaran.nilai_pembayaran, pembayaran.tanggal_pembayaran, pengguna.foto_pengguna
+                    FROM pengguna, pembayaran, menghuni
+                      WHERE 
+                        pengguna.id_pengguna = menghuni.id_pengguna AND
+                          menghuni.id_menghuni = pembayaran.id_menghuni AND
+                          pembayaran.id_status = 1 
+                          ORDER BY pembayaran.tanggal_pembayaran DESC
+                          LIMIT 6";
+                    
+                    $hasil = mysqli_query($conn, $query);
+                    
+                    while ($pembayaran_terbaru = mysqli_fetch_array($hasil)) {
+                                        
+                  ?>
                   <div class="row">
                     <div class="col-2">
-                    <img class="rounded-circle mt-1" width="40px" src="../../img/profile-img-none.png" alt="">
+
+                    <?php if($pembayaran_terbaru['foto_pengguna'] == NULL){ ?>
+
+                    <img class="rounded-circle mt-1" width="40px" height="40px" src="../../img/profile-img-none.png" alt="">
+
+                    <?php } else { ?>
+
+                    <img class="rounded-circle mt-1" width="40px" height="40px" src="../../img/<?php echo $pembayaran_terbaru['foto_pengguna']; ?>" alt="">
+
+                    <?php } ?>
+
                     </div>
                     <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark">Siti Zubaedah</h3>
-                      <p class="text-muted">Rp. 250.000</p>
+                      <h3 class="h6 font-weight-bolder text-dark"><?php echo $pembayaran_terbaru['nama_pengguna']; ?></h3>
+                      <p class="text-muted">Rp <?php echo number_format($pembayaran_terbaru['nilai_pembayaran']); ?></p>
                     </div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-2">
-                    <img class="rounded-circle mt-1" width="40px" src="../../img/profile-img-none.png" alt="">
-                    </div>
-                    <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark">Siti Zubaedah</h3>
-                      <p class="text-muted">Rp. 250.000</p>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-2">
-                    <img class="rounded-circle mt-1" width="40px" src="../../img/profile-img-none.png" alt="">
-                    </div>
-                    <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark">Siti Zubaedah</h3>
-                      <p class="text-muted">Rp. 250.000</p>
-                    </div>
-                  </div>
-
-
-                  <div class="row">
-                    <div class="col-2">
-                    <img class="rounded-circle mt-1" width="40px" src="../../img/profile-img-none.png" alt="">
-                    </div>
-                    <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark">Siti Zubaedah</h3>
-                      <p class="text-muted">Rp. 250.000</p>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-2">
-                    <img class="rounded-circle mt-1" width="40px" src="../../img/profile-img-none.png" alt="">
-                    </div>
-                    <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark">Siti Zubaedah</h3>
-                      <p class="text-muted">Rp. 250.000</p>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-2">
-                    <img class="rounded-circle mt-1" width="40px" src="../../img/profile-img-none.png" alt="">
-                    </div>
-                    <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark">Siti Zubaedah</h3>
-                      <p class="text-muted">Rp. 250.000</p>
-                    </div>
-                  </div>
-                
+                    <?php } ?>
+                  <a href="admin-pemasukan.php" class="btn btn-outline-primary btn-block">Selengkapnya</a>
                 </div>
               </div>
 
@@ -461,15 +488,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Ingin Keluar Aplikasi?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">Pilih "Logout" dibawah jika anda ingin mengakhiri sesi.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="../../pages/sign-in.php">Logout</a>
+            <a class="btn btn-primary" href="../../actions/process-logout.php">Logout</a>
           </div>
         </div>
       </div>
@@ -528,12 +555,18 @@
       data: {
         labels: [
           <?php 
-            $conn = mysqli_connect('localhost', 'root', '', 'tes_chart');
-            $query = "SELECT MONTH(tanggal_pemasukan) AS bulan FROM pemasukan";
+            $query = "SELECT SUM(pembayaran.nilai_pembayaran) AS pendapatan_bulanan, DATE_FORMAT(pembayaran.tanggal_pembayaran, '%M %Y') AS bulan
+            FROM pembayaran
+              WHERE
+                pembayaran.id_status = 1
+                  
+                  GROUP BY MONTH(pembayaran.tanggal_pembayaran)
+                  HAVING SUM(pembayaran.nilai_pembayaran)";
+
             $hasil = mysqli_query($conn, $query);
   
-            while($data = mysqli_fetch_array($hasil)){
-              echo $data['bulan'].', ';
+            while($data_bulanan = mysqli_fetch_array($hasil)){
+              echo "'".$data_bulanan['bulan']."'".", ";
             }
             ?>
         ],
@@ -551,12 +584,19 @@
           pointHitRadius: 10,
           pointBorderWidth: 2,
           data: [
-            <?php 
-              $query = "SELECT *  FROM pemasukan";
+            <?php   
+              $query = "SELECT SUM(pembayaran.nilai_pembayaran) AS pendapatan_bulanan, MONTH  (pembayaran.tanggal_pembayaran) AS bulan
+              FROM pembayaran
+                WHERE
+                  pembayaran.id_status = 1
+                    
+                    GROUP BY MONTH(pembayaran.tanggal_pembayaran)
+                    HAVING SUM(pembayaran.nilai_pembayaran)";
+
               $hasil = mysqli_query($conn, $query);
-    
-              while($data = mysqli_fetch_array($hasil)){
-                echo $data['nilai'].', ';
+
+              while($data_bulanan = mysqli_fetch_array($hasil)){
+                echo $data_bulanan['pendapatan_bulanan'].', ';
               }
               ?>
           ],
@@ -591,7 +631,7 @@
               padding: 10,
               // Include a dollar sign in the ticks
               callback: function (value, index, values) {
-                return '$' + number_format(value);
+                return 'Rp ' + number_format(value);
               }
             },
             gridLines: {
