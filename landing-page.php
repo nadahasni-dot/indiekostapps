@@ -81,7 +81,7 @@
         <h3>WELCOME</h3>
         <h1 class="display-4 text-uppercase">RUMAH <?php echo $data['nama_kost']; ?></h1>
         <p class="lead"><?php echo $data['deskripsi_kost']; ?></p>
-        <a href="" class="btn up-1 btn-gradient">Cek Ketersediaan Kamar</a>
+        <a href="pages/kamar-tersedia.php" class="btn up-1 btn-gradient">Cek Ketersediaan Kamar</a>
       </div>
     </div>
     <!-- jumbotron -->
@@ -114,7 +114,7 @@
           <p class="text-muted">Integrasi semua operasi penting dalam satu platform</p>
           <p class="font-weight-bold text-break">
             <i class="fas fa-check-circle text-success"></i> Pengelolaan Kamar dan Penghuni/Penyewa <br>
-            <i class="fas fa-check-circle text-success"></i> Check in & Check out <br>
+            <i class="fas fa-check-circle text-success"></i> Booking <br>
             <i class="fas fa-check-circle text-success"></i> Laporan keuangan & Laba-rugi <br>
             <i class="fas fa-check-circle text-success"></i> Inventarisasi
 
@@ -141,8 +141,8 @@
               <div class="col col-10">
                 <h6 class="font-weight-bold">Mencegah Kecurangan Biaya & Pendapatan</h6>
                 <p class="text-muted">
-                  Catatan check in & check out, pemasukan, dan pengeluaran tercatat rapi sehingga akan meminimalisir
-                  kecurangan staff
+                  Catatan booking, pemasukan, dan pengeluaran tercatat rapi sehingga akan meminimalisir
+                  kecurangan
                 </p>
               </div>
             </div>
@@ -271,14 +271,12 @@
                     <div class="col col-12 col-md-6">
                       <div class="single_testimonial">
                         <div class="pic">
-                          <img src="img/agus.jpg" alt="">
+                          <img src="images/abduljali.jpg" style="height : 70px" alt="">
                         </div>
-                        <h5 class="testimonial-title">Agus Sugiono</h5>
-                        <span class="test_designation">Pemilik Kost</span>
+                        <h5 class="testimonial-title">Abdul Jali</h5>
+                        <span class="test_designation">Pemilik Kost Putri Bidadari</span>
                         <p class="text-muted">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto blanditiis, aliquid sit itaque
-                          fuga ad exercitationem impedit atque? Excepturi nobis nostrum architecto, veniam molestiae
-                          dolor magnam facilis aliquam! Quod, quam.
+                         Saya tertarik untuk menggunakan, karena  saya memiliki banyak kost saya fikir akan sangat terbantu untuk merekap pengeluaran, pemasukan, serta melakukan tagihan kepada penghuni kost. Saran saya segera direalisasikan agar orang tua seperti kami dapat merasakan kemudahan ini.
                         </p>
                       </div><!-- end Single Testimonials -->
                     </div>
@@ -286,14 +284,12 @@
                     <div class="col col-12 col-md-6">
                       <div class="single_testimonial">
                         <div class="pic">
-                          <img src="img/siti.jpg" alt="">
+                          <img src="images/ibucahyani.jpeg" style="height : 70px" alt="">
                         </div>
-                        <h5 class="testimonial-title">Siti Memunah</h5>
-                        <span class="test_designation">Penghuni Kost</span>
+                        <h5 class="testimonial-title">Ibu Cahyani</h5>
+                        <span class="test_designation">Pemilik Kost Niyan</span>
                         <p class="text-muted">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque non enim dolor corporis in
-                          dolore quidem nobis officia culpa laudantium iste qui dolores, obcaecati iusto nesciunt quae,
-                          beatae nam nihil.
+                          Saya mencoba dan saya merasa sangat dibantu untuk Manajemen Keuangan. Meskipun perlu banyak penyempurnaan contohnya pada laporan, namun menurut saya jka sudah sempurna akan terasa manfaatnya.
                         </p>
                       </div><!-- end Single Testimonials -->
                     </div>
@@ -317,7 +313,7 @@
         </div>
       </div>
       <div class="row">
-        <a href="" class="btn btn-gradient-big mb-5">BERGABUNG</a>
+        <a href="https://api.whatsapp.com/send?phone=6281555997843" target="_blank" class="btn btn-gradient-big mb-5">BERGABUNG</a>
       </div>
     </div>
     <!-- bergabung -->

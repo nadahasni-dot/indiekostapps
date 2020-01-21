@@ -231,14 +231,28 @@ if(!isset($_SESSION['akun_id'])) header("location: ../../index.php");
                           <td class="font-weight-bold" width="30%">Total Pembayaran</td>
                           <td><?php echo 'Rp. '.number_format($data['total_bayar']); ?></td>
                         </tr>
-                        <tr>
-                          <td class="font-weight-bold" width="30%">Status Konfirmasi</td>
-                          <td><?php echo strtoupper($data['status_booking']); ?></td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-bold" width="30%">Informasi</td>
-                          <td class="font-weight-bold text-success">Setelah Pembayaran dikonfirmasi, anda resmi terdaftar sebagai penghuni. "Bukti Pembayaran" dan "Status Konfirmasi" akan dikirim melalui e-mail anda (Pastikan email anda valid).</td>
-                        </tr>                        
+                        <?php if($data['status_booking'] == 'belum dikonfirmasi'){ ?>
+                          <tr>
+                            <td class="font-weight-bold" width="30%">Status Konfirmasi</td>
+                            <td><?php echo strtoupper($data['status_booking']); ?></td>
+                          </tr>
+                          <tr>
+                            <td class="font-weight-bold" width="30%">Informasi</td>
+                            <td class="font-weight-bold text-success">Setelah Pembayaran dikonfirmasi, anda resmi
+                              terdaftar sebagai penghuni. "Bukti Pembayaran" dan "Status Konfirmasi" akan dikirim
+                              melalui e-mail anda (Pastikan email anda valid).</td>
+                          </tr>
+                        <?php } else {?>
+                          <tr>
+                            <td class="font-weight-bold" width="30%">Status Konfirmasi</td>
+                            <td>SUDAH DIKONFIRMASI</td>
+                          </tr>
+                          <tr>
+                            <td class="font-weight-bold" width="30%">Informasi</td>
+                            <td class="font-weight-bold text-success">Pembayaran Telah Dikonfirmasi. Harap Logout dan Sign In kembali untuk melanjutkan. <br><br><button type="button" class="btn btn-primary btn-block" data-target="#logoutModal" data-toggle="modal">Log Out</button></td>                            
+                          </tr>
+                          
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>
@@ -317,12 +331,11 @@ if(!isset($_SESSION['akun_id'])) header("location: ../../index.php");
                   </div>
                 </div>
               </div>
-            </div>
-            <?php 
-          }
-         } ?>
-
+            </div>            
+            <?php } ?>
           </div>
+          
+         <?php } ?>          
 
 
           <!-- /.container-fluid -->

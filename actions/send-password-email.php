@@ -39,9 +39,9 @@ if(isset($_POST["reset_pass"])){
 
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
 
-        $mail->Username = "nadasthing@gmail.com";     // SMTP username
+        $mail->Username = "indiekostteknotirta@gmail.com";     // SMTP username
 
-        $mail->Password = 'littlewing99';                         // SMTP password
+        $mail->Password = 'indieforever';                         // SMTP password
 
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 
@@ -49,7 +49,7 @@ if(isset($_POST["reset_pass"])){
 
         //Recipients
 
-        $mail->setFrom("nadasthing@gmail.com", "Nada Hasni"); //email pengirim
+        $mail->setFrom("indiekostteknotirta@gmail.com", "Tekno Tirta"); //email pengirim
 
         $mail->addAddress($emailTo); // Email penerima
 

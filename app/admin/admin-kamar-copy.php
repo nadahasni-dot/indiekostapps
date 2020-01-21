@@ -3,18 +3,7 @@
 include '../../actions/koneksi.php';
 ob_start();
 session_start();
-
-if (!isset($_SESSION['akun_id'])){
-  header("location: ../../landing-page.php");
-} 
-elseif (isset($_SESSION['akun_id'])){
-  if($_SESSION['hak_akses'] == 2){
-    header("location: ../penghuni/penghuni-dashboard.php");
-  }
-  elseif($_SESSION['hak_akses'] == 3){
-    header("location: ../calon-penghuni/calon-dashboard.php");
-  } 
-}
+if(!isset($_SESSION['akun_id'])) header("location: ../../index.php");
 
 ?>
 
@@ -29,7 +18,7 @@ elseif (isset($_SESSION['akun_id'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Master Data Tipe Kamar</title>
+  <title>Penghuni</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,9 +28,6 @@ elseif (isset($_SESSION['akun_id'])){
 
   <!-- Custom styles for this template-->
   <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -96,7 +82,6 @@ elseif (isset($_SESSION['akun_id'])){
         <div id="collapseKamar" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu:</h6>
-            <a class="collapse-item" href="admin-booking.php">Booking Kamar</a>
             <a class="collapse-item" href="admin-kamar.php">Data Kamar</a>
             <a class="collapse-item" href="admin-kamar-menghuni.php">Menghuni</a>            
           </div>
@@ -129,27 +114,26 @@ elseif (isset($_SESSION['akun_id'])){
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="admin-laba-rugi.php">Laporan Laba/Rugi</a>
-            <a class="collapse-item" href="admin-tagihan.php">Laporan Pengeluaran</a>
-            <!-- <a class="collapse-item" href="admin-status-kamar.php">Laporan Status Kamar</a> -->
+            <a class="collapse-item" href="#">Laporan Laba/Rugi</a>
+            <a class="collapse-item" href="#">Laporan Pengeluaran</a>
+            <a class="collapse-item" href="#">Laporan Status Kamar</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - masteData Collapse Menu -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster" aria-expanded="true"
           aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-box"></i>
           <span>Master Data</span>
         </a>
-        <div id="collapseMaster" class="collapse show" aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar">
+        <div id="collapseMaster" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu:</h6>
             <a class="collapse-item" href="admin-data-layanan.php">Data Layanan</a>
             <a class="collapse-item" href="admin-jenis-pengeluaran.php">Data Jenis Pengeluaran</a>
-            <a class="collapse-item active" href="#">Data Tipe Kamar</a>
+            <a class="collapse-item" href="admin-tipe-kamar.php">Data Tipe Kamar</a>
           </div>
         </div>
       </li>
@@ -199,12 +183,18 @@ elseif (isset($_SESSION['akun_id'])){
                 $result = mysqli_query($conn, $query);
         
                 while ($data = mysqli_fetch_array($result)) {
-                
+                  if ($data['foto_pengguna'] == NULL){                  
                 ?>
 
-                <img class="img-profile rounded-circle" src="../../img/<?php print_r($data['foto_pengguna']);  ?>">
+                <img class="img-profile rounded-circle" src="../../img/none.png">
+                  <?php } else { ?>
 
-                <?php } ?>
+                <img class="img-profile rounded-circle" src="../../img/<?php print_r($data['foto_pengguna']);  ?>">
+                
+                <?php
+                    } 
+                  } 
+                ?>
 
                 <!-- foto profil -->
 
@@ -234,80 +224,73 @@ elseif (isset($_SESSION['akun_id'])){
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tipe Kamar</h1>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <span class="m-0 font-weight-bold text-primary">Master Data Tipe Kamar</span>
+          <div class="d-sm-flex align-items-center justify-content-between mb-3">
+            <span class="h3 mb-0 text-gray-800">Kamar</span>
 
-              <!-- button tambah -->
-              <button class="btn btn-sm btn-primary btn-icon-split float-right" data-toggle="modal"
-                data-target="#tambahTipe">
-                <span class="icon text-white-50">
-                  <i class="fas fa-plus"></i>
-                </span>
-                <span class="text">Tambah Tipe Kamar</span>
-              </button>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th class="d-none">ID Tipe</th>
-                      <th>Nama Tipe</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th class="d-none">ID Tipe</th>
-                      <th>Nama Tipe</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <?php 
-                    $query = "SELECT * FROM `tipe_kamar`";
-                    $hasil = mysqli_query($conn, $query);
-                    $no = 1;
+            <!-- button tambah -->
 
-                    while ($data_tipe_kamar = mysqli_fetch_array($hasil)) {
-  
-                    ?>
-                    <tr>
-                      <td><?php echo $no; ?></td>
-                      <td class="d-none"><?php echo $data_tipe_kamar['id_tipe']; ?></td>
-                      <td><?php echo $data_tipe_kamar['nama_tipe']; ?></td>
-                      <td>
-                        <button id="<?php echo $data_tipe_kamar['id_tipe']; ?>" class="btn btn-success btn-circle btn-sm view_data" data-toggle="tooltip" data-placement="top"
-                          title="Edit Record">
-                          <i class="fas fa-pen"></i>
-                        </button>
-                        <a href="../../actions/process-delete.php?id_hapus_tipe_kamar=<?php echo $data_tipe_kamar['id_tipe']; ?>" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus Layanan Ini" onclick="return confirm('Anda yakin ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan!');">
-                          <i class="fas fa-trash"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    <?php 
-                      $no++;
-                    } 
-                    ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <button class="btn btn-sm btn-primary btn-icon-split float-right" data-toggle="modal"
+              data-target="#tambah-layanan">
+              <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+              </span>
+              <span class="text">Tambah Kamar</span>
+            </button>
           </div>
 
+          <div class="row">
+            <!-- QUERY UNTUK MENAMPILKAN DATA KAMAR -->
+            <?php 
+            $query = "SELECT kamar.nomor_kamar, kamar.harga_bulanan, kamar.deskripsi_kamar, kamar.foto_kamar, kamar.id_kamar, 
+            CASE
+                WHEN kamar.id_kamar = (SELECT menghuni.id_kamar FROM menghuni WHERE menghuni.id_kamar = kamar.id_kamar)
+              THEN
+                (SELECT pengguna.nama_pengguna FROM pengguna, menghuni WHERE pengguna.id_pengguna = menghuni.id_pengguna AND  menghuni.id_kamar = kamar.id_kamar)
+              ELSE
+                'Belum dihuni'
+              END AS Penghuni
+              
+            FROM kamar";
+
+            $result = mysqli_query($conn, $query);
+
+            while ($data_kamar = mysqli_fetch_array($result)) {
+              
+          ?>
+            <div class="col col-12 col-sm-6 col-lg-3 mb-4">
+              <div class="card">
+
+                <div class="no-kamar"><span class="font-weight-bold"><?php echo $data_kamar['nomor_kamar']; ?></span></div>
+
+                <img src="../../img/<?php echo $data_kamar['foto_kamar']; ?>"  height="200px" class="card-img-top" alt="...">
+
+                <div class="card-body">
+                  <h6 class="card-title "><span class="font-weight-bold">Dihuni:</span>
+                    <?php echo $data_kamar['Penghuni']; ?></h6>
+
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+
+                  <p class="card-text"><span class="font-weight-bold">Harga:</span>
+                    <?php echo number_format($data_kamar['harga_bulanan']);  ?></p>
+
+                  <a href="#" class="btn btn-outline-primary btn-block">EDIT</a>
+                  <a href="#" class="btn btn-outline-danger btn-block">HAPUS</a>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+
+          </div>
+
+
+          <!-- /.container-fluid -->
+
         </div>
-        <!-- /.container-fluid -->
         <!-- End of Main Content -->
 
         <!-- Footer -->
@@ -351,60 +334,8 @@ elseif (isset($_SESSION['akun_id'])){
       </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="tambahTipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-primary font-weight-bold" id="exampleModalCenterTitle">Tambah Tipe Kamar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-
-          <div class="modal-body">
-            <form action="../../actions/process-insert.php" method="POST">
-              <!-- form dalam modal -->
-
-              <div class="form-group">
-                <label for="inputTipeKamar">Nama Tipe Kamar</label>
-                <input name="inputTipeKamar" type="text" class="form-control" id="inputTipeKamar"
-                  aria-describedby="emailHelp" placeholder="Tipe kamar baru" required>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submitTipeKamar" class="btn btn-primary">Simpan</button>
-              </div>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- update Modal -->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-primary font-weight-bold" id="exampleModalCenterTitle">Edit Tipe Kamar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="detail_tipe_kamar">
-                                 
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -418,33 +349,6 @@ elseif (isset($_SESSION['akun_id'])){
     <!-- Page level plugins -->
     <script src="../../vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/datatables-demo.js"></script>
-
-    <script>
-    $(document).ready(function(){
-      // untuk view data
-      $('.view_data').on('click', function () {
-          var id_tipe = $(this).attr('id');
-
-          $.ajax({
-            url: "ajax/edit_data_tipe_kamar.php",
-            method: "post",
-            data: {
-              id_tipe: id_tipe
-            },
-            success: function (data) {
-              $('#detail_tipe_kamar').html(data);
-              $('#updateModal').modal();
-            }
-          });
-        });
-    });
-    </script>
 </body>
 
 </html>

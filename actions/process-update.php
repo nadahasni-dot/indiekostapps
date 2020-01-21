@@ -699,7 +699,7 @@
             if(mysqli_query($conn, $query)){
 
               $id = $_POST['id'];
-              $query = "DELETE FROM booking WHERE id_booking = '$id'";
+              $query = "UPDATE booking SET status_booking = 'belum_dikonfirmasi' WHERE id_booking = '$id'";
 
               if(mysqli_query($conn, $query)){
 

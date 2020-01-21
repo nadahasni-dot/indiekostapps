@@ -122,16 +122,27 @@
     // hapus menghuni
     if (isset($_GET['id_hapus_menghuni'])) {
       $id = $_GET['id_hapus_menghuni'];
+      $idPengguna = $_GET['id_pengguna'];      
 
       $query = "DELETE FROM menghuni WHERE id_menghuni = $id";
 
       if(mysqli_query($conn, $query)){
-        echo "
-          <script>
-            alert ('Berhasil menghapus data');
-            document.location.href = '../app/admin/admin-kamar-menghuni.php';
-          </script>
-        ";
+        // merubah hak akses pengguna ke belum menghuni
+        $query = "UPDATE pengguna SET id_akses = '3' WHERE id_pengguna = $idPengguna";
+
+        if(mysqli_query($conn, $query)){
+          // menghapus data booking penghuni
+          $query = "DELETE FROM booking WHERE id_pengguna = $idPengguna";
+
+          if(mysqli_query($conn, $query)){
+            echo "
+              <script>
+                alert ('Berhasil menghapus data');
+                document.location.href = '../app/admin/admin-kamar-menghuni.php';
+              </script>
+            ";
+          }
+        }
       } else {
         echo "
           <script>

@@ -133,9 +133,9 @@ elseif (isset($_SESSION['akun_id'])){
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="#">Laporan Laba/Rugi</a>
-            <a class="collapse-item" href="#">Laporan Tagihan</a>
-            <a class="collapse-item" href="#">Laporan Status Kamar</a>
+            <a class="collapse-item" href="admin-laba-rugi.php">Laporan Laba/Rugi</a>
+            <a class="collapse-item" href="admin-tagihan.php">Laporan Pengeluaran</a>
+            <!-- <a class="collapse-item" href="admin-status-kamar.php">Laporan Status Kamar</a> -->
           </div>
         </div>
       </li>

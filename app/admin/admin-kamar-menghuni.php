@@ -132,9 +132,9 @@ elseif (isset($_SESSION['akun_id'])){
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="#">Laporan Laba/Rugi</a>
-            <a class="collapse-item" href="#">Laporan Tagihan</a>
-            <a class="collapse-item" href="#">Laporan Status Kamar</a>
+            <a class="collapse-item" href="admin-laba-rugi.php">Laporan Laba/Rugi</a>
+            <a class="collapse-item" href="admin-tagihan.php">Laporan Pengeluaran</a>
+            <!-- <a class="collapse-item" href="admin-status-kamar.php">Laporan Status Kamar</a> -->
           </div>
         </div>
       </li>
@@ -247,7 +247,7 @@ elseif (isset($_SESSION['akun_id'])){
           <!-- Page Heading -->
 
           <div class="d-sm-flex align-items-center justify-content-between mb-3">
-            <span class="h3 mb-0 text-gray-800">Data Menghuni Kamar</span>
+            <span class="h3 mb-0 text-gray-800">Data Menghuni</span>
 
             <!-- button tambah -->
 
@@ -256,7 +256,7 @@ elseif (isset($_SESSION['akun_id'])){
               <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
               </span>
-              <span class="text">Tambah Menghuni</span>
+              <span class="text">Menghuni</span>
             </button>
           </div>
 
@@ -290,7 +290,7 @@ elseif (isset($_SESSION['akun_id'])){
                   </tfoot>
                   <tbody>
                     <?php 
-                    $query = "SELECT kamar.nomor_kamar, pengguna.nama_pengguna, menghuni.tanggal_masuk, menghuni.id_menghuni FROM menghuni, kamar, pengguna WHERE menghuni.id_kamar = kamar.id_kamar AND menghuni.id_pengguna = pengguna.id_pengguna";
+                    $query = "SELECT kamar.nomor_kamar, pengguna.nama_pengguna, menghuni.tanggal_masuk, menghuni.id_menghuni, pengguna.id_pengguna FROM menghuni, kamar, pengguna WHERE menghuni.id_kamar = kamar.id_kamar AND menghuni.id_pengguna = pengguna.id_pengguna";
 
                     $hasil = mysqli_query($conn, $query);                    
 
@@ -315,7 +315,7 @@ elseif (isset($_SESSION['akun_id'])){
                           <i class="fas fa-pen"></i>
                         </button>
                         <!-- delete btn -->
-                        <a href="../../actions/process-delete.php?id_hapus_menghuni=<?php echo $data_menghuni['id_menghuni']; ?>"
+                        <a href="../../actions/process-delete.php?id_hapus_menghuni=<?php echo $data_menghuni['id_menghuni']; ?>&id_pengguna=<?php echo $data_menghuni['id_pengguna']; ?>"
                           class="btn btn-danger btn-circle btn-sm m-1" title="Hapus Data Kamar"
                           onclick="return confirm('Anda yakin ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan!');">
                           <i class="fas fa-trash"></i>
@@ -333,7 +333,7 @@ elseif (isset($_SESSION['akun_id'])){
             </div>
           </div>
 
-
+          
 
           <!-- /.container-fluid -->
 

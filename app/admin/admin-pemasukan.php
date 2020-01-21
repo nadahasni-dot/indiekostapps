@@ -135,9 +135,9 @@ elseif (isset($_SESSION['akun_id'])){
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="#">Laporan Laba/Rugi</a>
-            <a class="collapse-item" href="#">Laporan Tagihan</a>
-            <a class="collapse-item" href="#">Laporan Status Kamar</a>
+            <a class="collapse-item" href="admin-laba-rugi.php">Laporan Laba/Rugi</a>
+            <a class="collapse-item" href="admin-tagihan.php">Laporan Pengeluaran</a>
+            <!-- <a class="collapse-item" href="admin-status-kamar.php">Laporan Status Kamar</a> -->
           </div>
         </div>
       </li>
@@ -246,10 +246,10 @@ elseif (isset($_SESSION['akun_id'])){
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+          
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pemasukan</h1>
+            <span class="h3 mb-0 text-gray-800">Pemasukan</span>
 
             <!-- button tambah -->
             <button class="btn btn-sm btn-primary btn-icon-split float-right" data-toggle="modal"
@@ -257,10 +257,13 @@ elseif (isset($_SESSION['akun_id'])){
               <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
               </span>
-              <span class="text">Tambah Pengeluaran</span>
+              <span class="text">Pemasukan</span>
             </button>
           </div>
+          
+          
 
+          
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -348,7 +351,7 @@ elseif (isset($_SESSION['akun_id'])){
               </div>
             </div>
           </div>
-
+          
 
         </div>
         <!-- End of Main Content -->

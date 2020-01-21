@@ -65,12 +65,12 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" name="ingat_login" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Ingat Saya</label>
                       </div>
-                    </div>
+                    </div> -->
 
                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Masuk" name="submit_login">
                     

@@ -38,7 +38,7 @@ elseif (isset($_SESSION['akun_id'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard</title>
+  <title>Laba Rugi</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,8 +71,8 @@ elseif (isset($_SESSION['akun_id'])){
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
+      <li class="nav-item">
+        <a class="nav-link" href="admin-dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -126,16 +126,16 @@ elseif (isset($_SESSION['akun_id'])){
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-book"></i>
           <span>Laporan</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="admin-laba-rugi.php">Laporan Laba/Rugi</a>
+            <a class="collapse-item active" href="admin-laba-rugi.php">Laporan Laba/Rugi</a>
             <a class="collapse-item" href="admin-tagihan.php">Laporan Pengeluaran</a>
             <!-- <a class="collapse-item" href="admin-status-kamar.php">Laporan Status Kamar</a> -->
           </div>
@@ -246,227 +246,92 @@ elseif (isset($_SESSION['akun_id'])){
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <form action="laporan/cetak-laba-rugi.php" method="POST" target="_blank">
-            <?php 
-              $query = "SELECT YEAR(CURRENT_DATE()) AS tahun_sekarang"; 
-              $result = mysqli_query($conn, $query);
-              $tahunSekarang = mysqli_fetch_array($result);
-            ?>
-            <input type="hidden" name="tahun" value="<?php echo $tahunSekarang['tahun_sekarang'] ?>" required>
-            <button href="#" type="submit" name="cetakTahun" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-print fa-sm text-white-50"></i> Cetak Laporan</button>
-            </form>
-          </div>
-
-          <div class="row">
-
-            <?php 
-              $query = "SELECT pembayaran.id_pembayaran , SUM(pembayaran.nilai_pembayaran) as pendapatan_bulan, MONTH(pembayaran.tanggal_pembayaran) bulan, DATE_FORMAT(CURRENT_DATE, '%M %Y') bulan_sekarang
-                FROM pembayaran
-                  WHERE
-                    pembayaran.id_status = 1 AND
-                      MONTH(pembayaran.tanggal_pembayaran) = MONTH(CURRENT_DATE)
-                      
-                      GROUP BY MONTH(pembayaran.tanggal_pembayaran)
-                      HAVING SUM(pembayaran.nilai_pembayaran) 
-                      LIMIT 12";
-
-              $result = mysqli_query($conn, $query);
-              $data_bulan = mysqli_fetch_array($result);
-            ?>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <a href="admin-pemasukan.php" class="stretched-link"></a>
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendapatan
-                        (<?php echo $data_bulan['bulan_sekarang'];?>)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
-                        <?php echo number_format($data_bulan['pendapatan_bulan']); ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <?php 
-              $query = "SELECT pembayaran.id_pembayaran , SUM(pembayaran.nilai_pembayaran) as pendapatan_tahun, YEAR(pembayaran.tanggal_pembayaran) bulan, DATE_FORMAT(CURRENT_DATE, '%Y') tahun_sekarang
-                FROM pembayaran
-                  WHERE
-                    pembayaran.id_status = 1 AND
-                      YEAR(pembayaran.tanggal_pembayaran) = YEAR(CURRENT_DATE)
-                      
-                      GROUP BY YEAR(pembayaran.tanggal_pembayaran)
-                      HAVING SUM(pembayaran.nilai_pembayaran)
-                      LIMIT 12";
-
-              $result = mysqli_query($conn, $query);
-              $data_tahun = mysqli_fetch_array($result);
-             ?>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <a href="admin-pemasukan.php" class="stretched-link"></a>
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pendapatan
-                        (<?php echo $data_tahun['tahun_sekarang']; ?>)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
-                        <?php echo number_format($data_tahun['pendapatan_tahun']); ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <a href="admin-penghuni.php" class="stretched-link"></a>
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Penghuni</div>
-                      <?php 
-                        $query = "SELECT COUNT(pengguna.nama_pengguna) total_penghuni FROM pengguna
-                        WHERE pengguna.id_akses = 2";
-        
-                        $result = mysqli_query($conn, $query);
-                        $data_penghuni = mysqli_fetch_array($result);
-                      ?>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?php echo $data_penghuni['total_penghuni']; ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-user-friends fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                
-                <div class="card-body">
-                <a href="admin-pemasukan.php" class="stretched-link"></a>
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pembayaran Pending</div>
-                      <?php 
-                        $query = "SELECT COUNT(pengguna.nama_pengguna) AS belum_dikonfirmasi
-                        FROM pengguna
-                          INNER JOIN menghuni ON pengguna.id_pengguna = menghuni.id_pengguna
-                          INNER JOIN pembayaran ON pembayaran.id_menghuni = menghuni.id_menghuni
+        <div class="row">
+            <div class="card col-12 mb-3">
+              <div class="card-body">
+                <h4 class="card-title">Cetak Laporan Laba/Rugi</h4>
+                <p class="card-text">Berisi semua pemasukan, pengeluaran, dan total laba/rugi</p>
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 mt-3">
+                  <form action="laporan/cetak-laba-rugi.php" target="_blank" method="POST">                    
+                    <div class="form-row">
+                      <div class="col">
+                        <select name="tahun" id="tahun" required>
+                          <option value="">Pilih Tahun</option>
+                          <?php 
+                          $query = "SELECT YEAR(pembayaran.tanggal_pembayaran) AS tahun FROM pembayaran
+                                    GROUP BY YEAR(pembayaran.tanggal_pembayaran)";
                           
-                          WHERE
-                            pembayaran.id_status = 2";
+                          $result = mysqli_query($conn, $query);
 
-                        $result = mysqli_query($conn, $query);
-                        $data_penghuni = mysqli_fetch_array($result);    
-                      ?>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $data_penghuni['belum_dikonfirmasi']; ?></div>
+                          while ($tahun = mysqli_fetch_array($result)) {
+                          
+                          ?>
+
+                          <option value="<?php echo $tahun['tahun']; ?>"><?php echo $tahun['tahun']; ?></option>                          
+                          
+                          <?php } ?>
+                        </select>
+                        <select name="bulan" id="bulan" required>
+                          <option value="">Pilih Bulan</option>
+                          <option value="1">Januari</option>
+                          <option value="2">Februari</option>
+                          <option value="3">Maret</option>
+                          <option value="4">April</option>
+                          <option value="5">Mei</option>
+                          <option value="6">Juni</option>
+                          <option value="7">Juli</option>
+                          <option value="8">Agustus</option>
+                          <option value="9">September</option>
+                          <option value="10">Oktober</option>
+                          <option value="11">November</option>
+                          <option value="12">Desember</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        
+                      </div>
                     </div>
-                    <div class="col-auto">
-                      <i class="fas fa-money-bill-wave fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <div class="col-xl-8 col-lg-7">
-
-              <!-- Area Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Pendapatan Tiap Bulan</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                  <hr>
-                  <span class="text-danger">Data pendapatan rumah kost anda tiap bulan</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-5">
-
-              <!-- Basic Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Pembayaran Kamar Terbaru</h6>
-                </div>
-                <div class="card-body">
-                  <?php 
-                    $query = "SELECT pengguna.nama_pengguna, pembayaran.nilai_pembayaran, pembayaran.tanggal_pembayaran, pengguna.foto_pengguna
-                    FROM pengguna, pembayaran, menghuni
-                      WHERE 
-                        pengguna.id_pengguna = menghuni.id_pengguna AND
-                          menghuni.id_menghuni = pembayaran.id_menghuni AND
-                          pembayaran.id_status = 1 
-                          ORDER BY pembayaran.tanggal_pembayaran DESC
-                          LIMIT 6";
+                        
+                    <button class="btn btn-primary mt-2" name="cetakBulan" type="submit"><i class="fas fa-print"></i> Cetak Berdasarkan Bulan</button>
                     
-                    $hasil = mysqli_query($conn, $query);
-                    
-                    while ($pembayaran_terbaru = mysqli_fetch_array($hasil)) {
-                                        
-                  ?>
-                  <div class="row">
-                    <div class="col-2">
-
-                    <?php if($pembayaran_terbaru['foto_pengguna'] == NULL){ ?>
-
-                    <img class="rounded-circle mt-1" width="40px" height="40px" src="../../img/profile-img-none.png" alt="">
-
-                    <?php } else { ?>
-
-                    <img class="rounded-circle mt-1" width="40px" height="40px" src="../../img/<?php echo $pembayaran_terbaru['foto_pengguna']; ?>" alt="">
-
-                    <?php } ?>
-
-                    </div>
-                    <div class="col-10">
-                      <h3 class="h6 font-weight-bolder text-dark"><?php echo $pembayaran_terbaru['nama_pengguna']; ?></h3>
-                      <p class="text-muted">Rp <?php echo number_format($pembayaran_terbaru['nilai_pembayaran']); ?></p>
-                    </div>
+                  </form>
                   </div>
-                    <?php } ?>
-                  <a href="admin-pemasukan.php" class="btn btn-outline-primary btn-block">Selengkapnya</a>
+                  <div class="col-md-6 col-sm-12 mt-3">
+                  <form action="laporan/cetak-laba-rugi.php" target="_blank" method="POST">                    
+                    <div class="form-row">
+                      <div class="col">
+                        <select name="tahun" id="tahun" required>
+                          <option value="">Pilih Tahun</option>
+                          <?php 
+                          $query = "SELECT YEAR(pembayaran.tanggal_pembayaran) AS tahun FROM pembayaran
+                                    GROUP BY YEAR(pembayaran.tanggal_pembayaran)";
+                          
+                          $result = mysqli_query($conn, $query);
+
+                          while ($tahun = mysqli_fetch_array($result)) {
+                          
+                          ?>
+
+                          <option value="<?php echo $tahun['tahun']; ?>"><?php echo $tahun['tahun']; ?></option>                          
+                          
+                          <?php } ?>
+                        </select>                        
+                      </div>
+                    </div>
+                        
+                    <button class="btn btn-primary mt-2" name="cetakTahun" type="submit"><i class="fas fa-print"></i> Cetak Berdasarkan Tahun</button>
+                    
+                  </form>
+                  </div>
                 </div>
               </div>
-
             </div>
-
-          </div>
-          <!-- /.container-fluid -->
+        </div>
 
         </div>
+
+        
         <!-- End of Main Content -->
 
         <!-- Footer -->
