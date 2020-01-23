@@ -298,7 +298,7 @@ elseif (isset($_SESSION['akun_id'])){
                       <td><?php echo $no; ?></td>
                       <td class="d-none"><?php echo $data_layanan['id_layanan']; ?></td>
                       <td><?php echo $data_layanan['nama_layanan']; ?></td>
-                      <td><?php echo number_format($data_layanan['harga_bulanan']); ?></td>
+                      <td><?php echo 'Rp. '.number_format($data_layanan['harga_bulanan']); ?></td>
                       <td>
                         <button class="btn btn-success btn-circle btn-sm view_data" id="<?php echo $data_layanan['id_layanan']; ?>" data-toggle="tooltip" data-placement="top" title="Edit Layanan Ini">
                           <i class="fas fa-pen"></i>
@@ -443,7 +443,7 @@ elseif (isset($_SESSION['akun_id'])){
     <script>
     $(document).ready(function(){
       // untuk view data
-      $('.view_data').on('click', function () {
+      $('#dataTable').on('click','.view_data', function () {
           var id_layanan = $(this).attr('id');
 
           $.ajax({

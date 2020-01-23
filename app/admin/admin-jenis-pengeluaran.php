@@ -459,7 +459,7 @@ elseif (isset($_SESSION['akun_id'])){
     <script>
     $(document).ready(function(){
       // untuk view data
-      $('.view_data').on('click', function () {
+      $('#dataTable').on('click','.view_data', function () {
           var id_jenis_pengeluaran = $(this).attr('id');
 
           $.ajax({

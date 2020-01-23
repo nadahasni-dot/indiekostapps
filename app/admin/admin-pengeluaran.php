@@ -417,7 +417,7 @@ elseif (isset($_SESSION['akun_id'])){
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-primary font-weight-bold" id="exampleModalCenterTitle">Edit Data Kamar</h5>
+            <h5 class="modal-title text-primary font-weight-bold" id="exampleModalCenterTitle">Edit Data Pengeluaran</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -520,7 +520,7 @@ elseif (isset($_SESSION['akun_id'])){
       $(document).ready(function () {
 
         // untuk view data
-        $('.view_data').on('click', function () {
+        $('#dataTable').on('click','.view_data', function () {
           var id_pengeluaran = $(this).attr('id');
           console.log(id_pengeluaran);
 
@@ -538,7 +538,7 @@ elseif (isset($_SESSION['akun_id'])){
         });
 
         // edit data
-        $('.edit_data').on('click', function () {
+        $('#dataTable').on('click','.edit_data', function () {
           var $tr = $(this).closest('tr');
 
           var data = $tr.children("td").map(function () {

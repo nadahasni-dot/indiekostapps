@@ -316,7 +316,7 @@ elseif (isset($_SESSION['akun_id'])){
                       <td><?php echo $data_kamar['luas_kamar']; ?></td>
                       <td><?php echo $data_kamar['lantai_kamar']; ?></td>
                       <td><?php echo $data_kamar['kapasitas_kamar']; ?></td>
-                      <td><?php echo $data_kamar['harga_bulanan']; ?></td>
+                      <td><?php echo 'Rp. '.number_format($data_kamar['harga_bulanan']); ?></td>
                       <td>
                         <!-- view btn -->
                         <button name="view" type="button" value="view" id="<?php echo $data_kamar['id_kamar']; ?>"
@@ -581,7 +581,7 @@ elseif (isset($_SESSION['akun_id'])){
         $(document).ready(function () {
 
           // untuk view data
-          $('.view_data').on('click', function () {
+          $('#dataTable').on('click','.view_data', function () {
             var id_kamar = $(this).attr('id');
             console.log(id_kamar);
 
@@ -599,7 +599,7 @@ elseif (isset($_SESSION['akun_id'])){
           });
 
           // edit data
-          $('.edit_data').on('click', function () {
+          $('.dataTable').on('click','.edit_data', function () {
             var $tr = $(this).closest('tr');
 
             var data = $tr.children("td").map(function () {

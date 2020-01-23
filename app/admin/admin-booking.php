@@ -582,7 +582,7 @@ elseif (isset($_SESSION['akun_id'])){
         $(document).ready(function () {
 
           // untuk view data
-          $('.view_data').on('click', function () {
+          $('#dataTable').on('click','.view_data', function () {
             var id_booking = $(this).attr('id');
             console.log(id_booking);
 
@@ -600,7 +600,7 @@ elseif (isset($_SESSION['akun_id'])){
           });
 
           // edit data
-          $('.edit_data').on('click', function () {
+          $('#dataTable').on('click','.edit_data', function () {
             var $tr = $(this).closest('tr');
 
             var data = $tr.children("td").map(function () {
