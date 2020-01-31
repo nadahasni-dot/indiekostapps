@@ -430,7 +430,7 @@ elseif (isset($_SESSION['akun_id'])){
                           menghuni.id_menghuni = pembayaran.id_menghuni AND
                           pembayaran.id_status = 1 
                           ORDER BY pembayaran.tanggal_pembayaran DESC
-                          LIMIT 6";
+                          LIMIT 5";
                     
                     $hasil = mysqli_query($conn, $query);
                     
@@ -569,7 +569,8 @@ elseif (isset($_SESSION['akun_id'])){
                 pembayaran.id_status = 1
                   
                   GROUP BY MONTH(pembayaran.tanggal_pembayaran)
-                  HAVING SUM(pembayaran.nilai_pembayaran)";
+                  HAVING SUM(pembayaran.nilai_pembayaran)
+                  ORDER BY pembayaran.tanggal_pembayaran ASC";
 
             $hasil = mysqli_query($conn, $query);
   
@@ -599,7 +600,8 @@ elseif (isset($_SESSION['akun_id'])){
                   pembayaran.id_status = 1
                     
                     GROUP BY MONTH(pembayaran.tanggal_pembayaran)
-                    HAVING SUM(pembayaran.nilai_pembayaran)";
+                    HAVING SUM(pembayaran.nilai_pembayaran)
+                    ORDER BY pembayaran.tanggal_pembayaran ASC";
 
               $hasil = mysqli_query($conn, $query);
 
@@ -671,7 +673,7 @@ elseif (isset($_SESSION['akun_id'])){
           callbacks: {
             label: function (tooltipItem, chart) {
               var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-              return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+              return datasetLabel + ': Rp. ' + number_format(tooltipItem.yLabel);
             }
           }
         }
